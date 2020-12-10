@@ -119,6 +119,39 @@
           }
         }
       }
+    },
+    "ngx-mat-table-extensions": {
+      "projectType": "library",
+      "root": "libs/ngx-mat-table-extensions",
+      "sourceRoot": "libs/ngx-mat-table-extensions/src",
+      "prefix": "ngx-mat-table-extensions",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ngx-mat-table-extensions/tsconfig.lib.json",
+              "libs/ngx-mat-table-extensions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ngx-mat-table-extensions/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ngx-mat-table-extensions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
