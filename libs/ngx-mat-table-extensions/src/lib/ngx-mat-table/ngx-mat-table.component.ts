@@ -12,11 +12,16 @@ import { NgxTableConfigProvider } from './ngx-table-config-provider';
 
 /**
  * How to get the component as flexible as possible?
- * - sort yes/ no
- * - filter yes/ no
+ * Filtering
+ * - yes/ no
+ *
+ * Sorting
+ * - yes/ no
+ * - correct sorting means a/A b/B etc.
  *
  * - custom templates
  * - custom components as templates
+ * - displayproperty with .-notation maybe advanced typescript features ? keyof T
  */
 
 @Component({
