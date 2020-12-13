@@ -9,6 +9,7 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { NgxColumnDefinition } from './models/ngx-column-definition';
 import { NgxTableConfigProvider } from './ngx-table-config-provider';
+import { accessSubProp } from './helper/access-sub-props';
 
 /**
  * How to get the component as flexible as possible?
@@ -33,7 +34,6 @@ import { NgxTableConfigProvider } from './ngx-table-config-provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxMatTableComponent<T> implements AfterViewInit {
-
   @Input() set trackByFnReference(arg: any) {
     if (typeof arg !== 'function') {
       throw new Error('arg for trackByFnReference is not a function!');
@@ -87,7 +87,8 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
     columnDefinition: NgxColumnDefinition
   ): T | any {
     if (columnDefinition.displayProperty) {
-      return element[columnDefinition.displayProperty];
+      // if columnDefinition.displayProperty has . then split and chain []
+      return accessSubProp(element, columnDefinition?.displayProperty);
     } else {
       return element;
     }
