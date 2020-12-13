@@ -1,1 +1,5 @@
 <ngx-mat-table [tableConfigProvider]="tableConfigProvider"></ngx-mat-table>
+
+<ng-template #id let-element>
+  <span class="fancy-id">{{element}}</span>
+</ng-template>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { NgxColumnDefinition, NgxTableConfigProvider } from '@ngx-mat-table-extensions/ngx-mat-table-extensions';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  NgxColumnDefinition,
+  NgxTableConfigProvider,
+} from '@ngx-mat-table-extensions/ngx-mat-table-extensions';
 import { User } from './user';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from './data.service';
@@ -9,18 +12,24 @@ import { DataService } from './data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
+  @ViewChild('id', { static: true }) idTemplate: TemplateRef<any>;
   title = 'demo';
   tableConfigProvider: NgxTableConfigProvider<User>;
 
-  constructor(private dataService: DataService) {
-    this.tableConfigProvider  = new NgxTableConfigProvider<User>(
+  constructor(private dataService: DataService) {}
+  ngOnInit() {
+    this.tableConfigProvider = new NgxTableConfigProvider<User>(
       new MatTableDataSource<User>([]),
       this.getColumns()
     );
-    dataService.getUser().subscribe(user => {
+    this.dataService.getUser().subscribe((user) => {
       this.tableConfigProvider.connectDataSource(user);
-    })
+    });
+  }
+
+  ngAfterViewInit() {
+
   }
 
   getColumns(): NgxColumnDefinition[] {
@@ -28,29 +37,34 @@ export class AppComponent {
       {
         headerId: 'id',
         title: 'ID',
-        displayProperty: 'id'
+        displayProperty: 'id',
+        cellTemplate: this.idTemplate,
       },
       {
         headerId: 'firstName',
         title: 'Firstname',
-        displayProperty: 'firstName'
+        displayProperty: 'firstName',
       },
       {
         headerId: 'lastName',
         title: 'Lastname',
-        displayProperty: 'lastName'
+        displayProperty: 'lastName',
       },
       {
         headerId: 'mail',
         title: 'Email',
-        displayProperty: 'email'
+        displayProperty: 'email',
       },
       {
         headerId: 'state',
         title: 'State',
-        displayProperty: 'address.state'
-      }
-    ]
+        // example for displaying nested properties
+        displayProperty: 'address.state',
+      },
+    ];
+  }
+
+  private emailDisplayFn(email: string): string {
+    return email.toUpperCase();
   }
 }
-

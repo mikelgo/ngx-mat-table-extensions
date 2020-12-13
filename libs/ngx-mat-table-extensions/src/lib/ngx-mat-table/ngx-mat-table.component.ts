@@ -23,6 +23,7 @@ import { accessSubProp } from './helper/access-sub-props';
  * - custom templates
  * - custom components as templates
  * - displayproperty with .-notation maybe advanced typescript features ? keyof T
+ * - displayProperty also supporting display functions?
  */
 
 @Component({
@@ -53,6 +54,8 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
   ngAfterViewInit(): void {
     if (this.tableConfigProvider) {
       this.tableConfigProvider.getDataSource().sort = this.sort;
+
+      console.log(this.tableConfigProvider)
     }
   }
 
