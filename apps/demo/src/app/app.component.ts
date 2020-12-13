@@ -44,6 +44,11 @@ export class AppComponent {
         headerId: 'mail',
         title: 'Email',
         displayProperty: 'email'
+      },
+      {
+        headerId: 'state',
+        title: 'State',
+        displayProperty: 'address.state'
       }
     ]
   }
