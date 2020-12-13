@@ -53,9 +53,9 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.tableConfigProvider) {
-      this.tableConfigProvider.getDataSource().sort = this.sort;
-
-      console.log(this.tableConfigProvider)
+      if(this.sort) {
+        this.tableConfigProvider.setupSorting(this.sort)
+      }
     }
   }
 
@@ -90,7 +90,6 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
     columnDefinition: NgxColumnDefinition
   ): T | any {
     if (columnDefinition.displayProperty) {
-      // if columnDefinition.displayProperty has . then split and chain []
       return accessSubProp(element, columnDefinition?.displayProperty);
     } else {
       return element;

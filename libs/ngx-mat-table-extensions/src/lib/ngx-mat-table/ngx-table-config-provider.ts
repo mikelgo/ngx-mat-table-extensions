@@ -1,31 +1,22 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxColumnDefinition } from './models/ngx-column-definition';
+import { MatSort } from '@angular/material/sort';
+import { accessSubProp } from './helper/access-sub-props';
 
-export interface DatasourceConnector<T> {
-  connectFilterPredicate(): void;
-  connectSortingDataAccessor(): void
-  filterPredicate(data: T, filter: string): boolean
-  sortingDataAccessor(  data: T, sortHeaderId: string): string | number
-}
+
 
 /**
  * This class can be used as a default config provider for a {@link StandardTableComponent} if
  * you do not need any custom sorting or filter-predicate.
  *
  */
-// TODO how to handle implementation of DatasourceConnector Interface?
-/**
- * How about:
- * provide default functionality with dot-notation for sorting and user must only specify in the
- * columndefinition the property to sort .eg [object.property1, object.property2] --> As addition in ColumnDefinition
- *
- * For filterpredicate the user must provide a custom filter function?
- * Better ways to do this?
- */
 export class NgxTableConfigProvider<T> {
   protected readonly datasource: MatTableDataSource<T> = null;
   protected readonly columnDefinitions: NgxColumnDefinition[] = [];
-  constructor(datasource: MatTableDataSource<T>, columnDefinitions: NgxColumnDefinition[]) {
+  constructor(
+    datasource: MatTableDataSource<T>,
+    columnDefinitions: NgxColumnDefinition[]
+  ) {
     this.datasource = datasource;
     this.columnDefinitions = columnDefinitions;
   }
@@ -48,7 +39,9 @@ export class NgxTableConfigProvider<T> {
    * @param columnDefinitions
    */
   getDisplayColumnDefinitions(): NgxColumnDefinition[] {
-    return this.columnDefinitions.filter((column: NgxColumnDefinition) => !column.hide);
+    return this.columnDefinitions.filter(
+      (column: NgxColumnDefinition) => !column.hide
+    );
   }
   /**
    * Returns all column header ID's for visible columns
@@ -60,4 +53,16 @@ export class NgxTableConfigProvider<T> {
       .map((column: NgxColumnDefinition) => column.headerId);
   }
 
+  setupSorting(sort: MatSort): void {
+    this.getDataSource().sort = sort;
+    this.getDataSource().sortingDataAccessor = (object, sortHeaderId) =>
+      accessSubProp(object, this.getPropForSortHeaderId(sortHeaderId));
+  }
+
+  private getPropForSortHeaderId(sortHeaderId: string): string {
+    if(sortHeaderId) {
+      const column = this.columnDefinitions.find(value => value.headerId === sortHeaderId);
+      return column.displayProperty
+    }
+  }
 }
