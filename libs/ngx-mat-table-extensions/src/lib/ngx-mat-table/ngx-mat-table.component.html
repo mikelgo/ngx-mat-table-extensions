@@ -19,7 +19,7 @@
       <mat-cell *matCellDef="let element">
         <ng-template
           [ngTemplateOutletContext]="{
-            element: getDisplayProp(element, column)
+            $implicit: getDisplayProp(element, column)
           }"
           [ngTemplateOutlet]="column?.cellTemplate"
         >
