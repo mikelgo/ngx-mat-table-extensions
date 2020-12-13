@@ -53,8 +53,8 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.tableConfigProvider) {
-      if(this.sort) {
-        this.tableConfigProvider.setupSorting(this.sort)
+      if (this.sort) {
+        this.setupSorting(this.sort);
       }
     }
   }
@@ -93,6 +93,22 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
       return accessSubProp(element, columnDefinition?.displayProperty);
     } else {
       return element;
+    }
+  }
+
+  private setupSorting(sort: MatSort): void {
+    this.tableConfigProvider.getDataSource().sort = sort;
+    this.tableConfigProvider.getDataSource().sortingDataAccessor = (
+      object,
+      sortHeaderId
+    ) => accessSubProp(object, this.getPropForSortHeaderId(sortHeaderId));
+  }
+  private getPropForSortHeaderId(sortHeaderId: string): string {
+    if (sortHeaderId) {
+      const column = this.tableConfigProvider
+        .getDisplayColumnDefinitions()
+        .find((value) => value.headerId === sortHeaderId);
+      return column.displayProperty;
     }
   }
 }

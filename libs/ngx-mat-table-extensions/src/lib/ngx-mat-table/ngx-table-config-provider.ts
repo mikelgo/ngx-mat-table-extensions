@@ -53,16 +53,7 @@ export class NgxTableConfigProvider<T> {
       .map((column: NgxColumnDefinition) => column.headerId);
   }
 
-  setupSorting(sort: MatSort): void {
-    this.getDataSource().sort = sort;
-    this.getDataSource().sortingDataAccessor = (object, sortHeaderId) =>
-      accessSubProp(object, this.getPropForSortHeaderId(sortHeaderId));
-  }
 
-  private getPropForSortHeaderId(sortHeaderId: string): string {
-    if(sortHeaderId) {
-      const column = this.columnDefinitions.find(value => value.headerId === sortHeaderId);
-      return column.displayProperty
-    }
-  }
+
+
 }
