@@ -13,12 +13,9 @@ import { accessSubProp } from './helper/access-sub-props';
 
 /**
  * How to get the component as flexible as possible?
- * Filtering
- * - yes/ no
  *
  * Sorting
  * - yes/ no
- * - correct sorting means a/A b/B etc.
  *
  * - custom templates
  * - custom components as templates
@@ -101,7 +98,10 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
     this.tableConfigProvider.getDataSource().sortingDataAccessor = (
       object,
       sortHeaderId
-    ) => accessSubProp(object, this.getPropForSortHeaderId(sortHeaderId));
+    ) =>
+      this.handleSortDirection(
+        accessSubProp(object, this.getPropForSortHeaderId(sortHeaderId))
+      );
   }
   private getPropForSortHeaderId(sortHeaderId: string): string {
     if (sortHeaderId) {
@@ -110,5 +110,20 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
         .find((value) => value.headerId === sortHeaderId);
       return column.displayProperty;
     }
+  }
+
+  /**
+   * Defines the sorting direction
+   * @param property
+   * @private
+   */
+  private handleSortDirection(property: any): any {
+    /**
+     * For strings the direction is uppercase letter and then lowercase letter
+     */
+    if (typeof property === 'string') {
+      return property.toLocaleLowerCase();
+    }
+    return property;
   }
 }
