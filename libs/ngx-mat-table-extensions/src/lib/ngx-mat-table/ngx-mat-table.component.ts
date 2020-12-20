@@ -46,6 +46,8 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
   private trackByFnRef = undefined;
 
   @Output() rowSelect = new EventEmitter<T>();
+  // Todo what is the type here
+  @Output() cellSelect = new EventEmitter<any>();
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   constructor() {}
@@ -129,7 +131,20 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
     return property;
   }
 
-  onRowSelect(element: any) {
-    this.rowSelect.emit(element);
+  /**
+   *
+   * @param row - the row which has been clicked in the table
+   * @param column - the column which has been clicked
+   */
+  onRowSelect(row: T, column: NgxColumnDefinition): void {
+    /**
+     * Emit selected row
+     */
+    this.rowSelect.emit(row);
+    /**
+     * Emit selected cell element
+     */
+    this.cellSelect.emit(accessSubProp(row, column?.displayProperty))
   }
+
 }

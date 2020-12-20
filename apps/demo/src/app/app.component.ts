@@ -72,4 +72,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   onCellSelect(user: User) {
     console.log(user);
   }
+
+  onRowSelect(user: User) {
+    // console.log(user);
+  }
 }
