@@ -1,9 +1,5 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxColumnDefinition } from './models/ngx-column-definition';
-import { MatSort } from '@angular/material/sort';
-import { accessSubProp } from './helper/access-sub-props';
-
-
 
 /**
  * This class can be used as a default config provider for a {@link StandardTableComponent} if
@@ -52,8 +48,4 @@ export class NgxTableConfigProvider<T> {
       .filter((column: NgxColumnDefinition) => !column.hide)
       .map((column: NgxColumnDefinition) => column.headerId);
   }
-
-
-
-
 }

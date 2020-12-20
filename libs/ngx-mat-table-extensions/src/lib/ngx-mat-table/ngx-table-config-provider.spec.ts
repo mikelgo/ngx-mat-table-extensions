@@ -3,23 +3,31 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgxColumnDefinition } from './models/ngx-column-definition';
 
 
-interface TestModel {}
+interface TestModel {
+  id: number;
+  name: string;
+}
+const MOCK_DATA: TestModel[] = [
+  {id: 102, name: 'name'},
+  {id: 2342, name: 'fasbnja3e'},
+  {id: 123, name: '23gfnae'}
+];
 
 describe('[NgxTableConfigProvider]', () => {
   let defaultTableConfigProvider: NgxTableConfigProvider<TestModel>;
   let columnDefinitions: NgxColumnDefinition[] = [];
   let datasource: MatTableDataSource<TestModel>;
-  const MOCK_DATA: TestModel[] = [];
+
   beforeEach(() => {
     columnDefinitions = [
       {
         headerId: 'header1',
-        title: 'title1',
+        title: 'id',
       },
       {
         headerId: 'header2',
         title: 'title2',
-        displayProperty: 'prop2',
+        displayProperty: 'name',
         hide: true
       }
     ];
