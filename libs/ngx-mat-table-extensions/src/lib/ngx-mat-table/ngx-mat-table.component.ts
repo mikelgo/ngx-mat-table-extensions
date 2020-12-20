@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   AfterViewInit,
   ViewChild,
-  Input,
+  Input, Output, EventEmitter
 } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { NgxColumnDefinition } from './models/ngx-column-definition';
@@ -44,6 +44,8 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
 
   @Input() tableConfigProvider: NgxTableConfigProvider<T> = null;
   private trackByFnRef = undefined;
+
+  @Output() rowSelect = new EventEmitter<T>();
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   constructor() {}
@@ -125,5 +127,9 @@ export class NgxMatTableComponent<T> implements AfterViewInit {
       return property.toLocaleLowerCase();
     }
     return property;
+  }
+
+  onRowSelect(element: any) {
+    this.rowSelect.emit(element);
   }
 }

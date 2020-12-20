@@ -1,4 +1,4 @@
-<ngx-mat-table [tableConfigProvider]="tableConfigProvider"></ngx-mat-table>
+<ngx-mat-table [tableConfigProvider]="tableConfigProvider" (rowSelect)="onCellSelect($event)"></ngx-mat-table>
 
 <ng-template #id let-element>
   <span class="fancy-id">{{element}}</span>

@@ -67,4 +67,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   private emailDisplayFn(email: string): string {
     return email.toUpperCase();
   }
+
+
+  onCellSelect(user: User) {
+    console.log(user);
+  }
 }
