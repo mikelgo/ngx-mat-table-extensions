@@ -1,0 +1,52 @@
+<mat-table
+  [dataSource]="tableConfigProvider?.getDataSource()"
+  matSort
+  matSortDisableClear
+>
+  <ng-container
+    *ngFor="
+      let column of tableConfigProvider?.getDisplayColumnDefinitions();
+      trackBy: trackByFn
+    "
+  >
+    <ng-container
+      *ngIf="column?.cellTemplate"
+      [matColumnDef]="column?.headerId"
+    >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column?.title }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <ng-template
+          [ngTemplateOutletContext]="{
+            $implicit: getDisplayProp(element, column)
+          }"
+          [ngTemplateOutlet]="column?.cellTemplate"
+        >
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container
+      *ngIf="!column?.cellTemplate"
+      [matColumnDef]="column?.headerId"
+    >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column?.title }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ getDisplayProp(element, column) }}
+      </mat-cell>
+    </ng-container>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="tableConfigProvider?.getDisplayColumnHeaderIds()"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="
+      let row;
+      columns: tableConfigProvider?.getDisplayColumnHeaderIds()
+    "
+  ></mat-row>
+</mat-table>
