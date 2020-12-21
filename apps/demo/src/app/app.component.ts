@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import {
-  NgxColumnDefinition,
-  NgxTableConfigProvider,
-} from '@ngx-mat-table-extensions/ngx-mat-table-extensions';
+
 import { User } from './user';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from './data.service';
+import { NgxColumnDefinition, NgxTableConfigProvider } from '@ngx-mat-table-extensions/ngx-mat-table';
 
 @Component({
   selector: 'ngx-mat-table-extensions-root',

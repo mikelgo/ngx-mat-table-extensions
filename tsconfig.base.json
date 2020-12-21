@@ -16,8 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ngx-mat-table-extensions/ngx-mat-table-extensions": [
-        "libs/ngx-mat-table-extensions/src/index.ts"
+      "@ngx-mat-table-extensions/ngx-mat-table": [
+        "libs/ngx-mat-table/src/index.ts"
       ]
     }
   },

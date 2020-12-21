@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NgxMatTableExtensionsModule } from '@ngx-mat-table-extensions/ngx-mat-table-extensions';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMatTableModule } from '@ngx-mat-table-extensions/ngx-mat-table';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, NgxMatTableExtensionsModule, HttpClientModule],
+  imports: [BrowserModule, NgxMatTableModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

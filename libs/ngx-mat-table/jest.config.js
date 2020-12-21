@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'ngx-mat-table-extensions',
+  displayName: 'ngx-mat-table',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/libs/ngx-mat-table-extensions',
+  coverageDirectory: '../../coverage/libs/ngx-mat-table',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

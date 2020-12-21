@@ -30,7 +30,7 @@
       "tags": [],
       "implicitDependencies": ["demo"]
     },
-    "ngx-mat-table-extensions": {
+    "ngx-mat-table": {
       "tags": []
     }
   }

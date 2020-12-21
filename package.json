@@ -26,7 +26,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "test:lib": "nx test ngx-mat-table-extensions",
+    "test:lib": "nx test ngx-mat-table",
     "build:lib": "ng-packagr -p libs/ngx-mat-table/package.json"
   },
   "private": true,

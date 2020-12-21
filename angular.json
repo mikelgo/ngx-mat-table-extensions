@@ -24,7 +24,11 @@
             "assets": [
               "apps/demo/src/favicon.ico",
               "apps/demo/src/assets",
-              { "glob": "data.json", "input": "./", "output": "./assets/" }
+              {
+                "glob": "data.json",
+                "input": "./",
+                "output": "./assets/"
+              }
             ],
             "styles": ["apps/demo/src/styles.scss"],
             "scripts": []
@@ -124,29 +128,26 @@
         }
       }
     },
-    "ngx-mat-table-extensions": {
+    "ngx-mat-table": {
       "projectType": "library",
-      "root": "libs/ngx-mat-table-extensions",
-      "sourceRoot": "libs/ngx-mat-table-extensions/src",
+      "root": "libs/ngx-mat-table",
+      "sourceRoot": "libs/ngx-mat-table/src",
       "prefix": "ngx-mat-table-extensions",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ngx-mat-table-extensions/tsconfig.lib.json",
-              "libs/ngx-mat-table-extensions/tsconfig.spec.json"
+              "libs/ngx-mat-table/tsconfig.lib.json",
+              "libs/ngx-mat-table/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ngx-mat-table-extensions/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ngx-mat-table/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ngx-mat-table-extensions/jest.config.js",
+            "jestConfig": "libs/ngx-mat-table/jest.config.js",
             "passWithNoTests": true
           }
         }
