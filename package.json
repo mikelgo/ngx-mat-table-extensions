@@ -26,8 +26,10 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "test:lib": "nx test ngx-mat-table",
-    "build:lib": "ng-packagr -p libs/ngx-mat-table/package.json"
+    "test:ngx-mat-table": "nx test ngx-mat-table",
+    "build:ngx-mat-table": "ng-packagr -p libs/ngx-mat-table/package.json",
+    "publish:ngx-mat-table": "npm publish ./dist/libs/ngx-mat-table --access=public",
+    "release:ngx-mat-table": "npm run test:ngx-mat-table && npm run build:ngx-mat-table && npm run publish:ngx-mat-table"
   },
   "private": true,
   "dependencies": {
