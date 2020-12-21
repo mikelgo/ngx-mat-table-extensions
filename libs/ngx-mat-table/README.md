@@ -12,7 +12,9 @@ Have a look at this [stackblitz](https://stackblitz.com/edit/ngx-mat-table-examp
 
 # Version compatibility
 This library follows Angular versioning, means e.g. version 10.x.x is compatible
-with Angular 10 and Angular material 10.
+with Angular 10 and Angular material 10. 
+
+The supported Angular versions start from version 10 of Angular and Angular material.
 
 # Versioning
 The library follows [semantic versioning](https://semver.org/).
