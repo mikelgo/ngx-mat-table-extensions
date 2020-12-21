@@ -1,10 +1,24 @@
 {
-  "name": "ngx-mat-table-extensions",
-  "version": "0.0.0",
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@mikelgo/ngx-mat-table",
+  "version": "10.0.0",
   "license": "MIT",
+  "author": "Mikelgo",
+  "description": "Extension for Angular material table",
+  "keywords": ["ng","angular","table","data-table","angular-material-table","mat-table","data-table","table-component","table-library", "ng-table"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikelgo/ngx-mat-table-extensions.git"
+  },
   "scripts": {
   },
-  "private": true,
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
+    },
+    "dest": "../../dist/libs/ngx-mat-table"
+  },
+  "private": false,
   "peerDependencies": {
     "@angular/animations": "^10.1.0",
     "@angular/cdk": "^10.2.7",

@@ -9,7 +9,6 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test:lib": "nx test ngx-mat-table-extensions",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
@@ -26,7 +25,9 @@
     "update": "ng update @nrwl/workspace",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "test:lib": "nx test ngx-mat-table-extensions",
+    "build:lib": "ng-packagr -p libs/ngx-mat-table/package.json"
   },
   "private": true,
   "dependencies": {
@@ -51,22 +52,23 @@
     "@angular/compiler-cli": "^10.1.0",
     "@angular/language-service": "^10.1.0",
     "@nrwl/cli": "10.4.4",
+    "@nrwl/cypress": "10.4.4",
     "@nrwl/jest": "10.4.4",
     "@nrwl/tao": "10.4.4",
     "@nrwl/workspace": "10.4.4",
     "@types/jest": "26.0.8",
     "@types/node": "~8.9.4",
     "codelyzer": "~5.0.1",
+    "cypress": "^5.5.0",
     "dotenv": "6.2.0",
     "eslint": "7.10.0",
     "jest": "26.2.2",
     "jest-preset-angular": "8.3.1",
+    "ng-packagr": "^10.1.2",
     "prettier": "2.1.2",
     "ts-jest": "26.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "~4.0.3",
-    "cypress": "^5.5.0",
-    "@nrwl/cypress": "10.4.4"
+    "typescript": "~4.0.3"
   }
 }
